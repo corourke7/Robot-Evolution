@@ -25,7 +25,7 @@ public class Robot {
 
 	public static final int robotFilterGroupIndex = MyConfiguration.robotFilterGroupIndex;
 	public static final float robotDensity = MyConfiguration.robotDensity;//0.5f;
-	public static final float robotFriction = MyConfiguration.robotFriction;//0.3
+	//public static final float robotFriction = MyConfiguration.robotFriction;//0.3
 	// Restitution is used to make objects bounce
 	public static final float robotRestitution = MyConfiguration.robotRestitution;
 	//public static final float robotAngularDamping = MyConfiguration.robotAngularDamping;
@@ -42,6 +42,7 @@ public class Robot {
 
 	// which part is the body, we have to keep it steady
 	private static int mainBodyPartIndex;
+	private static float robotFriction;
 	private static Body mainBody;
 	
 	
@@ -81,7 +82,7 @@ public class Robot {
 	
 	
 	public Robot(ArrayList<MyPart> partPoolSource, ArrayList<MyJoint> jointPoolSource, 
-			World world, int mainBodyIndex){
+			World world, int mainBodyIndex, float robotFriction){
 		
 		this.bodyPool = new ArrayList<Body>();
 		this.myPartPool = new ArrayList<MyPart>(partPoolSource);
@@ -93,6 +94,7 @@ public class Robot {
 		Robot.prevX = 0f;
 //		Robot.prevY = 0f;
 		Robot.mainBodyPartIndex = mainBodyIndex;
+		Robot.robotFriction = robotFriction;
 		assert(mainBodyIndex>=0 && mainBodyIndex<MyChromosome.partPoolSize);
 		totalEnergyUse = 0.0f;
 		totalEnergyUseBase = 0.0f;

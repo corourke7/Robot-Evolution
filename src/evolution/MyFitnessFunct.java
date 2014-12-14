@@ -21,6 +21,7 @@ public class MyFitnessFunct extends FitnessFunction{
 
 	// which part is the body, we have to keep it steady
 	private int mainBodyPartIndex;
+	private float robotFriction;
 	
 	private MyResult res;
 	
@@ -28,7 +29,7 @@ public class MyFitnessFunct extends FitnessFunction{
     	// 1. get information back from the chromosomes
     	retrieveGoodInfo(a_subject);
     	// 2. build the simulation and get the result back
-    	Simulation simu = new Simulation(partPool, jointPool, mainBodyPartIndex);
+    	Simulation simu = new Simulation(partPool, jointPool, mainBodyPartIndex, robotFriction);
     	res = simu.simulate();
     	//double distance = res.getDistance();
     	//double age = res.getAge();
@@ -72,13 +73,17 @@ public class MyFitnessFunct extends FitnessFunction{
 
 		Gene bodyIndexGene = a_subject.getGene(MyChromosome.partPoolSize*MyChromosome.partNumOfFeature);
 		mainBodyPartIndex = new Integer((int) bodyIndexGene.getAllele());
+		
+		Gene FrictionGene = a_subject.getGene(MyChromosome.partPoolSize*MyChromosome.partNumOfFeature+1);
+    	Double tempDouble = new Double((double) FrictionGene.getAllele());
+		robotFriction = tempDouble.floatValue();
     	
     	// 31~119
     	for (int i = 0; i < MyChromosome.maxJoints; i ++){
-    		int start = MyChromosome.partPoolSize*MyChromosome.partNumOfFeature + 1;
+    		int start = MyChromosome.partPoolSize*MyChromosome.partNumOfFeature + 2;
     		start += i * MyChromosome.jointNumOfFeature;
     		Gene jointAngleA = a_subject.getGene(start);
-    	    Double tempDouble = new Double((double) jointAngleA.getAllele());
+    	    tempDouble = new Double((double) jointAngleA.getAllele());
     		float angleA = tempDouble.floatValue();
     	    assert(angleA<=2*Math.PI && angleA >= 0f);
     		
@@ -159,5 +164,6 @@ public class MyFitnessFunct extends FitnessFunction{
     public ArrayList<MyPart> getPartPool(){return partPool;}
     public ArrayList<MyJoint> getJointPool(){return jointPool;}
     public int getMainBodyPartIndex(){return mainBodyPartIndex;}
+    public float getRobotFriction(){return robotFriction;}
     public MyResult getResult(){return res;}
 }

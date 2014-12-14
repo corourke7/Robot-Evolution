@@ -78,6 +78,7 @@ public class MyDemo extends BasicGame{
 	private static ArrayList<RevoluteJoint> jointPool;
 	// which part is the body, we have to keep it steady
 	private static int mainBodyPartIndex;
+	private static float robotFriction;
 	
 	// the world
     private static World world;
@@ -273,6 +274,7 @@ public class MyDemo extends BasicGame{
     			textPosition[0], textPosition[1]+20);
     	g.drawString(robot.getJointPool().size() + " joints and " + robot.getBodyPool().size()
     			+ " parts in total", textPosition[0], textPosition[1]+40);
+    	g.drawString("Friction = " + robotFriction,textPosition[0], textPosition[1]+60);
     	
     	// 2. draw ground
         Vec2 groundPosition = new Vec2(convertMeterToPixel(ground.getPosition().x), 
@@ -433,6 +435,7 @@ public class MyDemo extends BasicGame{
 		MyDemo.myPartPool = new ArrayList<MyPart>(mff.getPartPool());
 		MyDemo.myJointPool = new ArrayList<MyJoint>(mff.getJointPool());
 		MyDemo.mainBodyPartIndex = mff.getMainBodyPartIndex();
+		MyDemo.robotFriction = mff.getRobotFriction();
 	}
 	
 	private void updatePath(){
@@ -457,7 +460,7 @@ public class MyDemo extends BasicGame{
         Simulation.createGround(world);
         ground = (Body)(world.getBodyList());
         // robot
-        robot = new Robot(myPartPool, myJointPool, world, mainBodyPartIndex);
+        robot = new Robot(myPartPool, myJointPool, world, mainBodyPartIndex, robotFriction);
         mainBody = robot.getMainBody(); assert(mainBody!=null);
         jointPool = robot.getJointPool();
         myJointPool = robot.getMyJointPool();

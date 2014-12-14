@@ -51,6 +51,7 @@ public class MyChromosome {
 	   	 */
     	try{
 	    	ArrayList<Gene> genes = new ArrayList<Gene>();
+	 
 	    	// 1. Evolve the 10 parts' features
 	    	//    partPoolGene = 10 * onePart = 10 * (3 features) = 30 elements
 	    	for (int i = 0; i < MyChromosome.partPoolSize; i++){
@@ -66,6 +67,9 @@ public class MyChromosome {
 	    	// which part is the body, we have to keep it steady
 	    	Gene mainBodyPartIndex = new IntegerGene(conf, 0, partPoolSize-1);
 	    	genes.add(mainBodyPartIndex);
+	    	
+	    	Gene robotFriction = new DoubleGene(conf, MyConfiguration.minFriction, MyConfiguration.maxFriction);
+	    	genes.add(robotFriction);
 	    	
 		   	// 2. Evolve the 12 joints' features and Randomly choose n joints from the pool, n should be in [1,10]
 	    	//    jointPoolGene = 10 * oneJoint = 10 * (12 features) = 120 elements
@@ -110,7 +114,6 @@ public class MyChromosome {
 		    	// we also care about the sequence of the joint rotating
 		    	Gene sequence = new IntegerGene(conf, 0, MyChromosome.maxJoints);
 		    	Gene torque = new DoubleGene(conf, MyJoint.minTorque, MyJoint.maxTorque);
-		    	
 		    	
 		    	genes.add(jointAngleA);
 		    	genes.add(jointAngleBMinusA);

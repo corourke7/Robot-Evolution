@@ -52,15 +52,17 @@ public class Simulation {
     public static final float maxRestAge = MyConfiguration.maxSimuRestAge;
 	// which part is the body, we have to keep it steady
 	private int bodyIndex;
+	private float robotFriction;
     
 
-	public Simulation(ArrayList<MyPart> partPool, ArrayList<MyJoint> jointPool, int bi){
+	public Simulation(ArrayList<MyPart> partPool, ArrayList<MyJoint> jointPool, int bi, float rf){
 		Simulation.myPartPool = new ArrayList<MyPart>(partPool);
 		Simulation.myJointPool = new ArrayList<MyJoint>(jointPool);
 //		Simulation.jointPool = new ArrayList<RevoluteJoint>();
 //		Simulation.bodyPool = new ArrayList<Body>();
 		robotMaxDistance = -1000f;
 		this.bodyIndex = bi;
+		this.robotFriction = rf;
 	}
 	
 	public MyResult simulate(){
@@ -70,7 +72,7 @@ public class Simulation {
         world = new World(gravityVec2);
         world.setAllowSleep(true);
         createGround(this.world);
-        myRobot = new Robot(Simulation.myPartPool, Simulation.myJointPool, this.world, this.bodyIndex);
+        myRobot = new Robot(Simulation.myPartPool, Simulation.myJointPool, this.world, this.bodyIndex, this.robotFriction);
         // get the pools after sort
 //        jointPool = myRobot.getJointPool();
         myJointPool = myRobot.getMyJointPool();

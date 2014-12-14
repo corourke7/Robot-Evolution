@@ -10,7 +10,8 @@ public class MyConfiguration {
 	public static final int maxJoints = partPoolSize-1;//9
 	public static final int minJoints = 2;//5
     public static final int jointNumOfFeature = 12;
-    
+    public static final float minFriction = 0.01f;
+    public static final float maxFriction = 0.99f;
     
     // MyFitnessFunct
     
@@ -54,7 +55,7 @@ public class MyConfiguration {
  	public static final float maxDemoAge = 20f; // 8
     public static final float maxDemoRestAge = 10f;//3
     // evolution
-    public static final int populationSize = 300;//100
+    public static final int populationSize = 50;//100
     public static final int maxEvolutionsPerLoop = 10;
     // every screen we show 20 outputs
     public static final int outputListLength = 20;
