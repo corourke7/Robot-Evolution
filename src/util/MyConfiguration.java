@@ -38,7 +38,7 @@ public class MyConfiguration {
     // MyDemo
     public static final String windowTitle = "Evolution Robot";
     // this is in pixel
-    public static final int[] windowDemensions = {1024, 512};
+    public static final int[] windowDimensions = {1024, 512};
     // 30 pixels = 1 metre
     public static final float pixelsPerMeter = 30f;
     // text position in pixel
@@ -46,16 +46,16 @@ public class MyConfiguration {
     public static final int[] textPosition = {20, 20};
     // in demo, we don't make it too fast
 	public static final float myDemoTimeStep = 0.01f;//1f/60f;//0.01f;
-    // ground length and height in meters
+	// ground length and height in meters
     public static final float[] groundSizeMeter = {200f, 0.5f};
     // we need to kill this robot in finite iterations in demo
  	// Note: this is different from the maxIterationCount in Simulation, because we want to see longer demos
     public static final int maxDemoIterationCount = 1000;
  	// Note: these 2 are different from the maxIterationCount in Simulation, because we want to see longer demos
- 	public static final float maxDemoAge = 20f; // 8
-    public static final float maxDemoRestAge = 10f;//3
+ 	public static final float maxDemoAge = 20f; 
+    public static final float maxDemoRestAge = 2f;
     // evolution
-    public static final int populationSize = 50;//100
+    public static final int populationSize = 100;//100
     public static final int maxEvolutionsPerLoop = 10;
     // every screen we show 20 outputs
     public static final int outputListLength = 20;

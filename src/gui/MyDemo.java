@@ -56,7 +56,7 @@ public class MyDemo extends BasicGame{
 
 	private static final String windowTitle = MyConfiguration.windowTitle;
     // this is in pixel
-    public static final int[] windowDemensions = MyConfiguration.windowDemensions;
+    public static final int[] windowDimensions = MyConfiguration.windowDimensions;
     // this is in pixel
     // 30 pixels = 1 metre
     private static final float pixelsPerMeter = MyConfiguration.pixelsPerMeter;
@@ -281,17 +281,16 @@ public class MyDemo extends BasicGame{
         		convertMeterToPixel(ground.getPosition().y));
         Polygon groundShape = new Polygon();
         groundShape.addPoint(groundPosition.x - convertMeterToPixel(groundSizeMeter[0])/2, 
-        		windowDemensions[1]-(groundPosition.y - convertMeterToPixel(groundSizeMeter[1])/2));
+        		windowDimensions[1]-(groundPosition.y - convertMeterToPixel(groundSizeMeter[1])/2));
         groundShape.addPoint(groundPosition.x + convertMeterToPixel(groundSizeMeter[0])/2, 
-        		windowDemensions[1]-(groundPosition.y - convertMeterToPixel(groundSizeMeter[1])/2));
+        		windowDimensions[1]-(groundPosition.y - convertMeterToPixel(groundSizeMeter[1])/2));
         groundShape.addPoint(groundPosition.x + convertMeterToPixel(groundSizeMeter[0])/2, 
-        		windowDemensions[1]-(groundPosition.y + convertMeterToPixel(groundSizeMeter[1])/2));
+        		windowDimensions[1]-(groundPosition.y + convertMeterToPixel(groundSizeMeter[1])/2));
         groundShape.addPoint(groundPosition.x - convertMeterToPixel(groundSizeMeter[0])/2, 
-        		windowDemensions[1]-(groundPosition.y + convertMeterToPixel(groundSizeMeter[1])/2));
+        		windowDimensions[1]-(groundPosition.y + convertMeterToPixel(groundSizeMeter[1])/2));
     	g.setColor(new Color(139,69,19));
     	g.fill(groundShape);
 		
-        
         // 3. draw Bodies in different color, Bodies connected by 1 joint = 1 color
         color = new ArrayList<Integer>();
     	for (int x = 0; x<bodyPool.size();x++){
@@ -317,7 +316,7 @@ public class MyDemo extends BasicGame{
                 if(body.equals(mainBody))g.setColor(Color.red);
                 switch(color.get(x)){
                 	case 0:{g.setColor(Color.blue); break;}
-                	case 1:{g.setColor(Color.white); break;}
+                	case 1:{g.setColor(Color.black); break;}
                 	case 2:{g.setColor(Color.gray); break;}
                 	case 3:{g.setColor(Color.yellow); break;}
                 	case 4:{g.setColor(Color.cyan); break;}
@@ -340,7 +339,7 @@ public class MyDemo extends BasicGame{
                 Polygon bodyShape = new Polygon();
             	for (int i = 0; i < numberOfVertices; i++){
             		bodyShape.addPoint(convertMeterToPixel(worldPoints.get(i).x), 
-            				windowDemensions[1]-(convertMeterToPixel(worldPoints.get(i).y)));
+            				windowDimensions[1]-(convertMeterToPixel(worldPoints.get(i).y)));
             	}	
                 g.fill(bodyShape);
                 g.setColor(Color.black);

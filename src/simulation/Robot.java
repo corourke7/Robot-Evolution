@@ -79,6 +79,7 @@ public class Robot {
 	private ArrayList<Float> velocities;
 	private float totalVelocity;
 	private int numberOfVelocity;
+	float distFromFood;
 	
 	
 	public Robot(ArrayList<MyPart> partPoolSource, ArrayList<MyJoint> jointPoolSource, 
@@ -311,6 +312,13 @@ public class Robot {
 
     	// 2. how far does it walk in this timestep
     	float distance = this.getDistance() - Robot.prevX;
+    	distFromFood += distance;
+    	if (distFromFood > 3f)
+    	{
+    		distFromFood -= 3f;
+    		totalEnergyUse -= 1f;
+    	}
+    	
 
     	// 3. velocity variance to keep it in constant speed
     	float v = distance/MyConfiguration.simuTimeStep;
@@ -336,7 +344,7 @@ public class Robot {
     	//System.out.println("energyUse = " + energyUse);
     	
     	// the total fitness
-    	this.fitness += distance/(1 + bodyVariance);
+    	this.fitness += (10*distance)/(1 + bodyVariance);
     	Robot.prevX = this.getDistance();
     	/*
     	System.out.println("distance = "+distance+", fallapart= "+fallApart
@@ -382,15 +390,10 @@ public class Robot {
     	float totalEnergyUseRatio = 0f;
         if(totalEnergyUseBase != 0f) totalEnergyUseRatio = totalEnergyUse / totalEnergyUseBase;
         else assert(totalEnergyUse == 0f);
-    	/*System.out.println("totalEnergyUseBase = "+totalEnergyUseBase);
-    	System.out.println("totalEnergyUse = "+totalEnergyUse);
-    	System.out.println("totalNumberOfContact = "+totalNumberOfContact);
-    	System.out.println("contactNumberBase = "+contactNumberBase);
-    	System.out.println("totalEnergyUseRatio = "+totalEnergyUseRatio);*/
     	assert(totalEnergyUseRatio <= 1f && totalEnergyUseRatio >= 0f);
-    	fitness /= (1+totalEnergyUseRatio);
+    	fitness /= (1+totalEnergyUseRatio);	// more energy use = lower fitness
     	
-    	// 2. more joint is better, it is more flexible
+    	// 2. more joints are better, it is more flexible
     	float jointRatio = jointPool.size()/MyConfiguration.maxJoints;
     	assert(jointRatio>=0 && jointRatio<=1);
     	fitness *= (2+jointRatio);
@@ -403,8 +406,6 @@ public class Robot {
     	}
     	variance /= numberOfVelocity;
     	float stdDev = (float) Math.sqrt(variance);
-    	//System.out.println(stdDev);
-    	// normally stdDev is 1~2, for demo is bigger
     	fitness/=(1+stdDev);
     	
     	// 4. the total area of the robot - we should keep the materials low
@@ -415,8 +416,8 @@ public class Robot {
     	}
     	//System.out.println("mass = "+totalMass);
     	assert(totalMass <= 100f);
-    	float massRatio = totalMass / 100f;
-    	fitness/=(1+massRatio);
+    	totalMass = totalMass / 10f;
+    	fitness/=(totalMass);
     	
     	// final result
     	res = new MyResult(myPartPool, myJointPool, this.getDistance(), this.getAge(), 
