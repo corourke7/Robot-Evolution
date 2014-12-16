@@ -1,4 +1,8 @@
 package evolution;
+/* Basic program structure is based on corazza/Robot-Evolution Github 
+* https://github.com/corazza/Robot-Evolution
+* @author Shen Li, Colleen O'Rourke
+*/
 import java.util.ArrayList;
 
 import org.jbox2d.common.Vec2;

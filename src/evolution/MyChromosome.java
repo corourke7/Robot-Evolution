@@ -1,4 +1,8 @@
 package evolution;
+/* Basic program structure is based on corazza/Robot-Evolution Github 
+* https://github.com/corazza/Robot-Evolution
+* @author Shen Li, Colleen O'Rourke
+*/
 
 import java.util.ArrayList;
 
@@ -10,6 +14,7 @@ import org.jgap.impl.DoubleGene;
 import org.jgap.impl.IntegerGene;
 
 import util.MyConfiguration;
+
 
 // this is the chromosome ~ a robot. This includes all the parts and joints in 1 robot
 public class MyChromosome {

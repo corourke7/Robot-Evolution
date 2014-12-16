@@ -1,5 +1,12 @@
 package gui;
-
+/* Basic program structure is based on corazza/Robot-Evolution Github 
+* https://github.com/corazza/Robot-Evolution
+* JBox2D (Using Slick2D) 1-4 by WJC on YouTube
+* https://www.youtube.com/watch?v=FbyDCxoMN3k	
+* 
+* @author Shen Li, Colleen O'Rourke
+* 
+*/
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;

@@ -1,5 +1,8 @@
 package util;
-
+/* Basic program structure is based on corazza/Robot-Evolution Github 
+* https://github.com/corazza/Robot-Evolution
+* @author Shen Li, Colleen O'Rourke
+*/
 public class MyConfiguration {
 	
 	// MyChromosome
