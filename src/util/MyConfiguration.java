@@ -55,7 +55,7 @@ public class MyConfiguration {
  	public static final float maxDemoAge = 20f; 
     public static final float maxDemoRestAge = 2f;
     // evolution
-    public static final int populationSize = 100;//100
+    public static final int populationSize = 50;
     public static final int maxEvolutionsPerLoop = 10;
     // every screen we show 20 outputs
     public static final int outputListLength = 20;

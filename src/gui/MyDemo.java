@@ -192,7 +192,7 @@ public class MyDemo extends BasicGame{
 		}
 		else if(status == runRobotStatus){
 			robotIterationCount++;
-			if (robotIterationCount > MyDemo.maxDemoIterationCount /*|| killDemo == true*/) {
+			if (robotIterationCount > MyDemo.maxDemoIterationCount || (killDemo == true && robotIterationCount > MyDemo.maxDemoIterationCount/2)) {
 	    		robotIterationCount = 0;
 	            killDemo = false;
 	            robot.getResult(MyDemo.world);
@@ -203,7 +203,7 @@ public class MyDemo extends BasicGame{
 		        world.step(MyDemo.timeStep, Simulation.velocityIterations, Simulation.positionIterations);
 		    	Simulation.motorMoving(robot);
 		    	if(Simulation.robotDead(robot, true) == true){
-		    		System.out.println("Demo is dead");
+		    		//System.out.println("Demo is dead");
 		    		killDemo = true;
 		    	}
 //	    		System.out.println("joint = "+robot.getJointPool().size());
@@ -226,6 +226,7 @@ public class MyDemo extends BasicGame{
     			outputList.add(new String("Generation = " + new Integer(generationCount).toString() 
     					+ ", Fitness = " + res.getFitness() + ", Age = " + res.getAge()
     					+ ", Distance = " + res.getDistance()));
+    			System.out.println(new Integer(generationCount).toString() + "," + res.getFitness() + "," +  res.getDistance());
     			//System.out.println( "The best solution contained the following: " );
     			//System.out.println(bestChromosome);
     		}

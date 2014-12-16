@@ -363,11 +363,11 @@ public class Robot {
     	Boolean print = false;
     	if(myDemo) print = true;
     	if(isTooOld(maxAgeSource)){
-    		if(print) System.out.println("He is dead.");
+    		//if(print) System.out.println("He is dead.");
     		ret = true;
     	}
     	if(isLazy(maxRestAgeSource)){
-    		if(print) System.out.println("He is lazy.");
+    		//if(print) System.out.println("He is lazy.");
     		ret = true;
     	}
     	return ret;
@@ -416,8 +416,8 @@ public class Robot {
     	}
     	//System.out.println("mass = "+totalMass);
     	assert(totalMass <= 100f);
-    	totalMass = totalMass / 10f;
-    	fitness/=(totalMass);
+    	float totalMassRatio = totalMass / 10f;
+    	fitness/=(1+totalMassRatio);
     	
     	// final result
     	res = new MyResult(myPartPool, myJointPool, this.getDistance(), this.getAge(), 
